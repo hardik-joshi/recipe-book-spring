@@ -1,6 +1,7 @@
 package com.jhardik.recipebook.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -17,6 +18,9 @@ public class Recipe {
     private String directions;
     //    private difficulty Difficulty;
     private Byte[] image;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
 
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
@@ -91,6 +95,14 @@ public class Recipe {
 
     public void setImage(Byte[] image) {
         this.image = image;
+    }
+
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
+
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
     }
 
     public Notes getNotes() {
