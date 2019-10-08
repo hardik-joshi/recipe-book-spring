@@ -1,5 +1,7 @@
 package com.jhardik.recipebook.services;
 
+import com.jhardik.recipebook.converters.RecipeCommandToRecipe;
+import com.jhardik.recipebook.converters.RecipeToRecipeCommand;
 import com.jhardik.recipebook.domain.Recipe;
 import com.jhardik.recipebook.repositories.RecipeRepository;
 import org.junit.Before;
@@ -22,11 +24,17 @@ public class RecipeServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
     @Before
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
