@@ -75,7 +75,14 @@
             </div>
             <div class="card text-white bg-info mt-3">
                 <div class="card-header">
-                    Ingredients
+                    <div class="row">
+                        <div class="col-sm-11">
+                            Ingredients
+                        </div>
+                        <div class="col-sm-1">
+                            <a class="btn btn-light btn-sm" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}">View</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
