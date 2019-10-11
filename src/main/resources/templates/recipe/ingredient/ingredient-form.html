@@ -12,7 +12,7 @@
 <div class="container">
     <div class="row justify-content-md-center">
         <div class="col-sm-10">
-            <form th:object="${ingredient}" th:action="@{'/recipe/' + ${ingredient.getRecipeId()} + '/ingredient'}">
+            <form th:object="${ingredient}" th:action="@{'/recipe/' + ${ingredient.getRecipeId()} + '/ingredient'}" method="post">
                 <input type="hidden" th:field="*{id}">
                 <div class="card text-white bg-info mt-3">
                     <div class="card-header">
@@ -33,11 +33,11 @@
                                                placeholder="Source" th:field="*{amount}">
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="unitOfMeasure">Unit Of Measure</label>
-                                        <select class="custom-select" id="unitOfMeasure">
+                                        <label>Unit Of Measure</label>
+                                        <select class="custom-select" name="unitOfMeasure.id">
                                             <option th:each="unitOfMeasure : ${unitOfMeasureList}"
                                                     th:value="${unitOfMeasure.id}"
-                                                    th:selected="${unitOfMeasure.equals(ingredient.unitOfMeasure)}"
+                                                    th:selected="${unitOfMeasure.id.equals(ingredient.unitOfMeasure.id)}"
                                                     th:text="${unitOfMeasure.description}">Each
                                             </option>
                                         </select>
@@ -45,6 +45,11 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <input type="submit" class="btn btn-light" value="Update">
                     </div>
                 </div>
             </form>
