@@ -56,12 +56,12 @@
                                                placeholder="Cook Time" th:field="*{cookTime}">
                                     </div>
                                     <div class="col-md-4 mb-3">
-                                        <label for="difficulty">Difficulty</label>
-                                        <select class="custom-select" id="difficulty">
-                                            <option selected></option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                        <label>Difficulty</label>
+                                        <select class="custom-select" th:field="*{difficulty}">
+                                            <option th:each="difficultyValue : ${T(com.jhardik.recipebook.domain.Difficulty).values()}"
+                                                    th:value="${difficultyValue.name()}"
+                                                    th:text="${difficultyValue.name()}"
+                                            ></option>
                                         </select>
                                     </div>
                                 </div>
