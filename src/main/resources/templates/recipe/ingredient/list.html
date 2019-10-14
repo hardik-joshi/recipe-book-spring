@@ -39,8 +39,8 @@
                             <th scope="row" th:text="${ingredient.id}">1</th>
                             <td th:text="${ingredient.getAmount()} + ' ' + ${ingredient.unitOfMeasure.getDescription()} + ' ' + ${ingredient.getDescription()}">Tasty Goodness</td>
                             <td><a class="text-light" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/show'}">View</a></td>
-                            <td><a class="text-light" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/'+ ${ingredient.id} + '/update'}">Update</a></td>
-                            <td><a class="text-light" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + '/delete'}">Delete</a></td>
+                            <td><a class="text-light" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/update'}">Update</a></td>
+                            <td><a class="text-light" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/' + ${ingredient.id} + '/delete'}">Delete</a></td>
                         </tr>
                         </tbody>
                     </table>
