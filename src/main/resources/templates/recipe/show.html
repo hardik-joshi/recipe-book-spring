@@ -14,19 +14,38 @@
         <div class="col-sm-10">
             <div class="card text-white bg-info mt-3">
                 <div class="card-header">
-                    <span th:text="${recipe.description}">Recipe</span>
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <span th:text="${recipe.description}">Recipe</span>
+                        </div>
+                        <div class="col-sm-2">
+                            <a class="btn btn-light btn-sm" th:href="@{'/recipe/' + ${recipe.id} + '/image'}">Change Image</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-md-3">
-                            <h5>Categories:</h5>
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5>Categories:</h5>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <ul>
+                                        <li th:each="category : ${recipe.categories}">
+                                            <span th:text="${category.getDescription()}"></span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-9">
-                            <ul>
-                                <li th:each="category : ${recipe.categories}">
-                                    <span th:text="${category.getDescription()}"></span>
-                                </li>
-                            </ul>
+                        <div class="col-sm-6">
+                            <img src="../../static/images/guacamole400x400WithX.jpg"
+                                 th:src="@{/images/guacamole400x400WithX.jpg}"
+                                 class="rounded float-right"
+                                 style="max-width: 200px; max-height: 200px;">
                         </div>
                     </div>
                     <div class="row">
