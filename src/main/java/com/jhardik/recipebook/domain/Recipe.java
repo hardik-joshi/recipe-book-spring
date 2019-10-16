@@ -22,6 +22,8 @@ public class Recipe {
 
     @Lob
     private String directions;
+
+    @Lob
     private Byte[] image;
 
     @Enumerated(value = EnumType.STRING)
