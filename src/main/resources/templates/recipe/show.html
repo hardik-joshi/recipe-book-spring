@@ -19,7 +19,8 @@
                             <span th:text="${recipe.description}">Recipe</span>
                         </div>
                         <div class="col-sm-2">
-                            <a class="btn btn-light btn-sm" th:href="@{'/recipe/' + ${recipe.id} + '/image'}">Change Image</a>
+                            <a class="btn btn-light btn-sm" th:href="@{'/recipe/' + ${recipe.id} + '/image'}">Change
+                                Image</a>
                         </div>
                     </div>
                 </div>
@@ -43,7 +44,7 @@
                         </div>
                         <div class="col-sm-6">
                             <img src="../../static/images/guacamole400x400WithX.jpg"
-                                 th:src="@{/images/guacamole400x400WithX.jpg}"
+                                 th:src="@{'/recipe/' + ${recipe.id} + '/recipeimage'}"
                                  class="rounded float-right"
                                  style="max-width: 200px; max-height: 200px;">
                         </div>
@@ -99,7 +100,8 @@
                             Ingredients
                         </div>
                         <div class="col-sm-1">
-                            <a class="btn btn-light btn-sm" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}">View</a>
+                            <a class="btn btn-light btn-sm"
+                               th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}">View</a>
                         </div>
                     </div>
                 </div>
