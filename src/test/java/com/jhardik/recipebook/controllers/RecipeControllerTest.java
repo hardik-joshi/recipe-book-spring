@@ -2,6 +2,7 @@ package com.jhardik.recipebook.controllers;
 
 import com.jhardik.recipebook.commands.RecipeCommand;
 import com.jhardik.recipebook.domain.Recipe;
+import com.jhardik.recipebook.exceptions.NotFoundException;
 import com.jhardik.recipebook.services.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,6 +46,17 @@ public class RecipeControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/show"))
                 .andExpect(model().attributeExists("recipe"));
+    }
+
+    @Test
+    public void testGetRecipeNotFound() throws Exception {
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+
+        when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
+
+        mockMvc.perform(get("/recipe/1/show"))
+                .andExpect(status().isNotFound());
     }
 
     @Test
