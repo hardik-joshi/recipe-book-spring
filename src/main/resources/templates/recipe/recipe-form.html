@@ -28,7 +28,7 @@
                                 <div class="form-row">
                                     <div class="col-md-4 mb-3"
                                          th:class="${#fields.hasErrors('description')} ? 'col-md-4 mb-3 has-error' : 'col-md-4 mb-3'">
-                                        <label for="description">Recipe Description</label>
+                                        <label for="description" th:text="#{recipe.description}">Recipe Description</label>
                                         <input type="text" class="form-control" id="description"
                                                placeholder="Description" th:field="*{description}"
                                                th:errorclass="has-error">
