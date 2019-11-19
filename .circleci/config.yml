@@ -1,47 +1,38 @@
-# Java Maven CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-java/ for more details
-#
 version: 2
 jobs:
-    build:
-        docker:
-        # specify the version you desire here
-        - image: circleci/openjdk:11-browsers-legacy
+  build:
 
-        # Specify service dependencies here if necessary
-        # CircleCI maintains a library of pre-built images
-        # documented at https://circleci.com/docs/2.0/circleci-images/
-        # - image: circleci/postgres:9.4
+    working_directory: ~/recipe-book-spring
 
-        working_directory: ~/repo
-
+    docker:
+      - image: circleci/openjdk:8-jdk-stretch
         environment:
-            # Customize the JVM maximum heap limit
-            MAVEN_OPTS: -Xmx3200m
+          MAVEN_OPTS: -Xmx3200m
 
-        steps:
-        - checkout
+    steps:
 
-        # Download and cache dependencies
-        - restore_cache:
-              keys:
-              - v1-dependencies-{{ checksum "pom.xml" }}
-              # fallback to using the latest cache if no exact match is found
-              - v1-dependencies-
+      - checkout
 
-        - run: mvn install -DskipTests
+      - restore_cache:
+          key: circleci-recipe-book-spring-{{ checksum "pom.xml" }}
 
-        - run: mvn dependency:go-offline
+      - run: mvn dependency:go-offline
 
-        - save_cache:
-              paths:
-              - ~/.m2
-              key: v1-dependencies-{{ checksum "pom.xml" }}
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: circleci-recipe-book-spring-{{ checksum "pom.xml" }}
 
-        # run tests!
-        - run: mvn integration-test cobertura:cobertura
+      - run: mvn package
 
-        - run:
-            name: Send to CodeCov
-            command: bash <(curl -s https://codecov.io/bash)
+      - store_test_results:
+          path: target/surefire-reports
+
+      - store_artifacts:
+          path: target/recipe-book-spring-0.0.1-SNAPSHOT.jar
+
+      - run: mvn integration-test cobertura:cobertura
+
+      - run:
+          name: Send to CodeCov
+          command: bash <(curl -s https://codecov.io/bash)
